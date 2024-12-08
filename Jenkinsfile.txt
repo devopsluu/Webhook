@@ -17,9 +17,8 @@ pipeline {
             steps {
                 echo 'Maven'
                 echo 'java build tool'
-                echo 'devloped by apache'  
+                echo 'developed by apache'  
             }
-
         }
         stage('stage4') {
             steps {
@@ -27,7 +26,6 @@ pipeline {
                 echo 'JAR FILE'
                 echo 'WAR FILE'
                 echo 'EAR FILE' 
-                
             }
         }
         stage('stage5') {
@@ -81,7 +79,7 @@ pipeline {
                 echo 'Aggregation'
                 echo 'Formatting'
                 echo 'Calculating'
-                echo 'ouput' 
+                echo 'output' 
                 echo 'Error handling stage'
             }
         }
@@ -90,7 +88,7 @@ pipeline {
                 echo 'Environment'
                 echo 'staging area'
                 echo 'testing area' 
-                echo 'pre prodution'
+                echo 'pre-production'
                 echo 'production'
                 echo 'error free'
                 echo 'reports'
@@ -99,8 +97,6 @@ pipeline {
                 echo 'Hosting in webpage'
             }
         }
-
-    stages {
         stage('Build') {
             steps {
                 echo 'Building...'
@@ -108,6 +104,7 @@ pipeline {
             }
         }
     }
+
     post {
         always {
             emailext(
@@ -117,6 +114,5 @@ pipeline {
                 to: 'recipient@example.com'
             )
         }
-    }
     }
 }
