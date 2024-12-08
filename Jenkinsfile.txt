@@ -99,9 +99,24 @@ pipeline {
                 echo 'Hosting in webpage'
             }
         }
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building...'
+                // Simulate a build step
+            }
+        }
+    }
+    post {
+        always {
+            emailext(
+                subject: "Build ${currentBuild.fullDisplayName}",
+                body: """<p>Build ${currentBuild.fullDisplayName} completed.</p>
+                         <p>Check the console output at ${env.BUILD_URL}</p>""",
+                to: 'recipient@example.com'
+            )
+        }
+    }
     }
 }
-
-
-
-
