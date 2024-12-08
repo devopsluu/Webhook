@@ -17,8 +17,9 @@ pipeline {
             steps {
                 echo 'Maven'
                 echo 'java build tool'
-                echo 'developed by apache'  
+                echo 'devloped by apache'  
             }
+
         }
         stage('stage4') {
             steps {
@@ -26,6 +27,7 @@ pipeline {
                 echo 'JAR FILE'
                 echo 'WAR FILE'
                 echo 'EAR FILE' 
+                
             }
         }
         stage('stage5') {
@@ -79,7 +81,7 @@ pipeline {
                 echo 'Aggregation'
                 echo 'Formatting'
                 echo 'Calculating'
-                echo 'output' 
+                echo 'ouput' 
                 echo 'Error handling stage'
             }
         }
@@ -88,7 +90,7 @@ pipeline {
                 echo 'Environment'
                 echo 'staging area'
                 echo 'testing area' 
-                echo 'pre-production'
+                echo 'pre prodution'
                 echo 'production'
                 echo 'error free'
                 echo 'reports'
@@ -97,21 +99,19 @@ pipeline {
                 echo 'Hosting in webpage'
             }
         }
-        stage('Build') {
-            steps {
-                echo 'Building...'
-                // Simulate a build step
-            }
-        }
     }
-
     post {
         always {
+            echo 'Pipeline execution completed.'
             emailext(
-                subject: "Build ${currentBuild.fullDisplayName}",
-                body: """<p>Build ${currentBuild.fullDisplayName} completed.</p>
-                         <p>Check the console output at ${env.BUILD_URL}</p>""",
-                to: 'kavitha.p.aws@gmail.com'
+                to: 'kavitha.p.aws@gmail.com',
+                subject: "Pipeline Build Notification - ${currentBuild.fullDisplayName}",
+                body: """\
+                <p>The pipeline build has completed:</p>
+                <p>Status: ${currentBuild.currentResult}</p>
+                <p>Check the build details <a href="${env.BUILD_URL}">here</a>.</p>
+                """,
+                mimeType: 'text/html'
             )
         }
     }
